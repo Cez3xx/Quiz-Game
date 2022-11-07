@@ -1,6 +1,7 @@
 const questionElement = document.querySelector('.question')
 const answerButtonElement = document.querySelectorAll('.btn')
 const nextButton = document.querySelector('.next-btn')
+const displayPoints = document.querySelector('.points')
 const answerA = document.querySelector('.answerA')
 const answerB = document.querySelector('.answerB')
 const answerC = document.querySelector('.answerC')
@@ -104,6 +105,9 @@ const questions = [
     },
 ]
 
+
+let points = 0
+
 function setNextQuestion(){
     const chooseRandomNumber = Math.floor(Math.random() * questions.length)
     const randomQuestion = questions[chooseRandomNumber]    // Generates random question
@@ -117,6 +121,8 @@ function setNextQuestion(){
             document.body.style.background = '#1b6000'
             answerButton.style.background = 'lime'
             nextButton.classList.remove('hidden')
+            points++
+            displayPoints.innerHTML = 'Points: ' + points
         }else{
             document.body.style.background = '#660000'
             answerButton.style.background = 'red'
