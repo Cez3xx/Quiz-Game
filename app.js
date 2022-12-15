@@ -107,6 +107,7 @@ const questions = [
 
 
 let points = 0
+let gotPoints = false  // For not getting points on every click
 
 function setNextQuestion(){
     const chooseRandomNumber = Math.floor(Math.random() * questions.length)
@@ -121,7 +122,12 @@ function setNextQuestion(){
             document.body.style.background = '#1b6000'
             answerButton.style.background = 'lime'
             nextButton.classList.remove('hidden')
-            points++
+            if(!gotPoints){
+                points++
+                gotPoints = true
+            } else{
+                console.log('You have already taken points')
+            }
             displayPoints.innerHTML = 'Points: ' + points
         }else{
             document.body.style.background = '#660000'
@@ -129,6 +135,7 @@ function setNextQuestion(){
         }
         nextButton.addEventListener('click', function(){
             answerButton.style.background = '#1e8eff'
+            gotPoints = false
         })
     }))
 }
